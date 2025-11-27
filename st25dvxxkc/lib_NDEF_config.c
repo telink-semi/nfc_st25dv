@@ -1,0 +1,64 @@
+/**
+ ******************************************************************************
+ * @file    lib_NDEF_config.c
+ * @author  MMY Application Team
+ * @version 1.3.2
+ * @date    28-Feb-2022
+ * @brief   This file is a template to be modified in the project to configure
+ *          how the lib_NDEF is supposed to access the nfctag memory.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2022 STMicroelectronics.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ * Imported from repository (https://github.com/STMicroelectronics/x-cube-nfc7/)
+ * at commit 107e25d1c22d9e855c1208bd2a34dc1811582c2d.
+ *
+ *
+ ******************************************************************************
+ */
+#include "lib_NDEF_config.h"
+#include "stm32l4s5i_iot01_nfctag.h"
+
+/**
+ * @brief  Reads data in the nfctag at specific address
+ * @param  pData : pointer to store read data
+ * @param  offset: Address to read
+ * @param  Size : Size in bytes of the value to be read
+ * @retval NDEF_OK if success, NDEF_ERROR in case of failure
+ */
+int32_t NDEF_Wrapper_ReadData(const struct device *dev, uint8_t *pData, uint32_t offset,
+			      uint32_t length)
+{
+	if (BSP_NFCTAG_ReadData(dev, 0, pData, offset, length) != NFCTAG_OK) {
+		return NDEF_ERROR;
+	}
+	return NDEF_OK;
+}
+
+/**
+ * @brief  Zrites data in the nfctag at specific address
+ * @param  pData : pointer to the data to be written
+ * @param  offset: Address to write
+ * @param  Size : Number of bytes to be written
+ * @retval NDEF_OK if success, NDEF_ERROR in case of failure
+ */
+int32_t NDEF_Wrapper_WriteData(const struct device *dev, const uint8_t *pData, uint32_t offset,
+			       uint32_t length)
+{
+	if (BSP_NFCTAG_WriteData(dev, 0, pData, offset, length) != NFCTAG_OK) {
+		return NDEF_ERROR;
+	}
+	return NDEF_OK;
+}
+
+/**
+ * @brief  Compute the NFCTAG Memory Size.
+ * @return uint32_t Memory size in bytes.
+ */
+uint32_t NDEF_Wrapper_GetMemorySize(const struct device *dev)
+{
+	return BSP_NFCTAG_GetByteSize(dev, 0);
+}

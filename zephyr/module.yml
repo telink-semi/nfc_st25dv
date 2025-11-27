@@ -1,0 +1,4 @@
+name: nfc_st25dv
+build:
+  cmake: .
+  kconfig: Kconfig
