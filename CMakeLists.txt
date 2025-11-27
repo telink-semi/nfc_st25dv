@@ -5,6 +5,9 @@
 #
 
 if (CONFIG_ST25DVXXKC)
-    zephyr_sources(st25dv.c)
+	zephyr_include_directories(
+		${CMAKE_CURRENT_SOURCE_DIR}/include
+	)
+
     add_subdirectory(st25dvxxkc)
 endif()

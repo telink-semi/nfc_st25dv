@@ -39,7 +39,7 @@ extern "C" {
 /*!< constant Unsigned integer types  */
 /*	I2C config
  * ------------------------------------------------------------------------------*/
-/* #define ST25DV_I2C_TIMEOUT	(0x3FFFF) /*!< I2C Time out */
+/* #define ST25DV_I2C_TIMEOUT	(0x3FFFF) !< I2C Time out */
 #define ST25DV_I2C_TIMEOUT (40)   /*!< I2C Time out */
 #define ST25DV_I2C_POLLING 0x0FFF /* Nb attempt of the polling */
 #define ST25DV_ADDR        0xAC   /*!< M24SR address */
