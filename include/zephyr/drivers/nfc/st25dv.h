@@ -12,7 +12,7 @@
 #include <zephyr/types.h>
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/i2c.h>
-#include <zephyr/nfc/nfc_tag.h>
+#include "nfc_tag.h"
 
 /******************* DEVICE STRUCTURE *******************/
 
