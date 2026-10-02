@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Telink Semiconductor
+ * Copyright (c) 2023 - 2026 Telink Semiconductor
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -14,18 +14,11 @@
 #include <zephyr/drivers/i2c.h>
 #include "nfc_tag.h"
 
-/******************* DEVICE STRUCTURE *******************/
-
-struct st25dvxxkc_cfg {
-	/* i2c parameters */
-	struct i2c_dt_spec i2c;
-};
+#define ST25DV_USER_MEMORY_ADDR 0x53
+#define ST25DV_SYSTEM_AREA_ADDR 0x57
 
 struct st25dvxxkc_data {
-	const struct device *parent;
 	const struct device *dev_i2c;
-	struct k_work worker_irq;
-	/* NFC subsys data */
 	nfc_tag_cb_t nfc_tag_cb;
 	enum nfc_tag_type tag_type;
 };
