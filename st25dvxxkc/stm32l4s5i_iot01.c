@@ -111,7 +111,7 @@ int32_t NFC_IO_IsDeviceReady(const struct device *dev, uint16_t DevAddr, uint32_
 		return -ENODEV;
 	}
 
-	ret = i2c_write_read(data->dev_i2c, DevAddr >> 1, regAddr, 2, pData, 1);
+	ret = i2c_write_read(data->dev_i2c, DevAddr, regAddr, 2, pData, 1);
 
 	if (ret) {
 		return NFC_I2C_ERROR_TIMEOUT;
@@ -160,8 +160,7 @@ int32_t NFC_IO_WriteReg16(const struct device *dev, uint16_t DevAddr, uint16_t R
 		memcpy(&buffer[2], pData, Length);
 	}
 
-	ret = i2c_write(data->dev_i2c, buffer, (Length || (pData != NULL)) ? Length + 2 : 0,
-			DevAddr >> 1);
+	ret = i2c_write(data->dev_i2c, buffer, (Length || (pData != NULL)) ? Length + 2 : 0, DevAddr);
 
 	if (ret) {
 		return NFC_I2C_ERROR_TIMEOUT;
@@ -197,8 +196,7 @@ int32_t NFC_IO_ReadReg16(const struct device *dev, uint16_t DevAddr, uint16_t Re
 		       (uint32_t)pData, Length);
 		return ERR_PARAM;
 	}
-
-	ret = i2c_write_read(data->dev_i2c, DevAddr >> 1, regAddr, 2, pData, Length);
+	ret = i2c_write_read(data->dev_i2c, DevAddr, regAddr, 2, pData, Length);
 	if (ret) {
 		printk("\r\nError %d while reading @%X (devAddr=%X)\r\n", ret, Reg, DevAddr);
 		return ret;
